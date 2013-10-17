@@ -418,7 +418,7 @@ static NSString *RKMIMETypeFromAFHTTPClientParameterEncoding(AFHTTPClientParamet
 		
         NSError *error = nil;
         NSString *charset = (__bridge NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(self.HTTPClient.stringEncoding));
-        [request setValue:[NSString stringWithFormat:@"%@; charset=%@", self.requestSerializationMIMEType, charset] forHTTPHeaderField:@"Content-Type"];
+        [request setValue:[NSString stringWithFormat:@"%@; charset=%@", @"text/json", charset] forHTTPHeaderField:@"Content-Type"];
         NSData *requestBody = [RKMIMETypeSerialization dataFromObject:parameters MIMEType:self.requestSerializationMIMEType error:&error];
         [request setHTTPBody:requestBody];
 	} else {
