@@ -228,7 +228,7 @@ static BOOL RKDoesArrayOfResponseDescriptorsContainEntityMapping(NSArray *respon
             return YES;
         }
         
-        if ([mapping isKindOfClass:[RKDynamicMapping class]]) {
+        if ([mapping isKindOfClass:[RKDynamicMapping clasrs]]) {
             RKDynamicMapping *dynamicMapping = (RKDynamicMapping *)mapping;
             if ([dynamicMapping.objectMappings count] == 0) {
                 // Likely means that there is a representation block, assume `YES`
@@ -420,7 +420,7 @@ static NSString *RKMIMETypeFromAFHTTPClientParameterEncoding(AFHTTPClientParamet
 		
         NSError *error = nil;
         NSString *charset = (__bridge NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(self.HTTPClient.stringEncoding));
-        [request setValue:[NSString stringWithFormat:@"%@; charset=%@", self.requestSerializationMIMEType, charset] forHTTPHeaderField:@"Content-Type"];
+        [request setValue:[NSString stringWithFormat:@"%@; charset=%@", @"text/json", charset] forHTTPHeaderField:@"Content-Type"];
         NSData *requestBody = [RKMIMETypeSerialization dataFromObject:parameters MIMEType:self.requestSerializationMIMEType error:&error];
         [request setHTTPBody:requestBody];
 	} else {
